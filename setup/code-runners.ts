@@ -182,6 +182,54 @@ const defaultCppConfig: CppConfig = {
   useStdLib: false
 };
 
+/**
+ * Gets supported compilers for a language
+ */
+const getSupportedCompilers = (language: SupportedLanguages): string[] => {
+  return COMPILER_SUPPORT[language].map(compiler => compiler.name);
+};
+
+/**
+ * Gets supported standards for a specific compiler and language
+ */
+const getSupportedStandards = (compiler: string, language: SupportedLanguages): string[] => {
+  const compilerSupport = COMPILER_SUPPORT[language].find(c => c.name === compiler);
+  return compilerSupport ? compilerSupport.standards : [];
+};
+
+/**
+ * Gets compiler support information
+ */
+const getCompilerSupport = (compiler: string, language: SupportedLanguages): CompilerSupport | undefined => {
+  return COMPILER_SUPPORT[language].find(c => c.name === compiler);
+};
+
+/**
+ * Gets additional libraries for a specific compiler, standard, and language
+ */
+const getAdditionalLibraries = (compiler: string, standard: string, language: SupportedLanguages): string => {
+  const compilerSupport = getCompilerSupport(compiler, language);
+  return compilerSupport?.additionalLibs?.[standard] || '';
+};
+
+/**
+ * Gets the default compiler for a language
+ */
+const getDefaultCompiler = (language: SupportedLanguages): CppCompiler | CCompiler => {
+  return language === 'cpp'
+    ? ('g++' as CppCompiler)
+    : ('g++' as CCompiler);
+};
+
+/**
+ * Gets the default standard for a language
+ */
+const getDefaultStandard = (language: SupportedLanguages): CppStandard | CStandard => {
+  return language === 'cpp'
+    ? ('c++20' as CppStandard)
+    : ('c2x' as CStandard);
+};
+
 export default defineCodeRunnersSetup((runners: CodeRunnerProviders) => {
   return {};
 });
