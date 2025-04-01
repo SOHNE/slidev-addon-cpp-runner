@@ -4,7 +4,7 @@
 
 A `C + C++` execution addon for [Slidev]'s Monaco Runner, powered by [Coliru]'s compilation API. Write, compile, and run `C + C++` code directly in your presentations!
 
-![Screenshot](https://github.com/user-attachments/assets/08c67aab-c5bb-435a-88fb-ce2568554f5f)
+![Screenshot](https://github.com/user-attachments/assets/b7607393-8200-4e1f-a9fa-03242708e987)
 
 ## 🌟 Features
 
