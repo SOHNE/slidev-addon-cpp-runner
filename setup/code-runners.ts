@@ -53,6 +53,27 @@ interface SlideFrontmatter {
   c?: Partial<CConfig>;
 }
 
+/**
+ * Compiler support configuration
+ */
+interface CompilerSupport {
+  name: string;
+  standards: string[];
+  stdlibFlag?: string;
+  additionalLibs?: Record<string, string>;
+}
+
+// Common configuration options
+const COMMON_FLAGS = '-Wall -Wextra -pedantic -pthread -pedantic-errors';
+const COMMON_LIBRARIES = '-lm';
+const DEFAULT_OPTIMIZATION = 'O2';
+
+// Command output formats
+const OUTPUT_FORMATS = {
+  ALWAYS_SHOW: '2>&1 | sed "s/^/☘ /"; if [ -x a.out ]; then ./a.out | sed "s/^/☢ /"; fi',
+  DEFAULT: '&& ./a.out'
+};
+
 export default defineCodeRunnersSetup((runners: CodeRunnerProviders) => {
   return {};
 });
