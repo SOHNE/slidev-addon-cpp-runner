@@ -76,46 +76,6 @@ const OUTPUT_FORMATS = {
 
 // Compiler support definitions
 const COMPILER_SUPPORT: Record<SupportedLanguages, CompilerSupport[]> = {
-  cpp: [
-    {
-      name: 'g++-4.9',
-      standards: ['c++98', 'c++11', 'c++14'],
-      additionalLibs: {
-        'c++11': '-latomic',
-        'c++14': '-latomic',
-      }
-    },
-    {
-      name: 'g++-5.2',
-      standards: ['c++98', 'c++11', 'c++14', 'c++1z'],
-      additionalLibs: {
-        'c++11': '-latomic',
-        'c++14': '-latomic',
-        'c++1z': '-latomic',
-      }
-    },
-    {
-      name: 'g++',
-      standards: ['c++98', 'c++11', 'c++14', 'c++17', 'c++20', 'c++23'],
-      additionalLibs: {
-        'c++11': '-latomic',
-        'c++14': '-latomic',
-        'c++17': '-latomic',
-        'c++20': '-latomic',
-        'c++23': '-latomic',
-      }
-    },
-    {
-      name: 'clang++',
-      standards: ['c++98', 'c++11', 'c++14', 'c++17'],
-      stdlibFlag: '-stdlib=libc++',
-      additionalLibs: {
-        'c++11': '-latomic -lsupc++',
-        'c++14': '-latomic -lsupc++',
-        'c++17': '-latomic -lsupc++',
-      }
-    }
-  ],
   c: [
     {
       name: 'gcc-4.9',
@@ -154,8 +114,72 @@ const COMPILER_SUPPORT: Record<SupportedLanguages, CompilerSupport[]> = {
       additionalLibs: {
         'c11': '-latomic',
       }
-    }
+    },
+  ],
+  cpp: [
+    {
+      name: 'g++-4.9',
+      standards: ['c++98', 'c++11', 'c++14'],
+      additionalLibs: {
+        'c++11': '-latomic',
+        'c++14': '-latomic',
+      }
+    },
+    {
+      name: 'g++-5.2',
+      standards: ['c++98', 'c++11', 'c++14', 'c++1z'],
+      additionalLibs: {
+        'c++11': '-latomic',
+        'c++14': '-latomic',
+        'c++1z': '-latomic',
+      }
+    },
+    {
+      name: 'g++',
+      standards: ['c++98', 'c++11', 'c++14', 'c++17', 'c++20', 'c++23'],
+      additionalLibs: {
+        'c++11': '-latomic',
+        'c++14': '-latomic',
+        'c++17': '-latomic',
+        'c++20': '-latomic',
+        'c++23': '-latomic',
+      }
+    },
+    {
+      name: 'clang++',
+      standards: ['c++98', 'c++11', 'c++14', 'c++17'],
+      stdlibFlag: '-stdlib=libc++',
+      additionalLibs: {
+        'c++11': '-latomic -lsupc++',
+        'c++14': '-latomic -lsupc++',
+        'c++17': '-latomic -lsupc++',
+      }
+    },
   ]
+};
+
+// Default configuration for C
+const defaultCConfig: CConfig = {
+  compiler: 'gcc',
+  standard: 'c2x',
+  optimization: DEFAULT_OPTIMIZATION,
+  flags: COMMON_FLAGS,
+  libraries: `${COMMON_LIBRARIES} -latomic`,
+  extraCommands: '',
+  alwaysShowCompilerOutput: true,
+  useStdLib: false
+};
+
+// Default configuration for C++
+const defaultCppConfig: CppConfig = {
+  compiler: 'g++',
+  standard: 'c++20',
+  optimization: DEFAULT_OPTIMIZATION,
+  flags: COMMON_FLAGS,
+  libraries: `${COMMON_LIBRARIES} -latomic`,
+  extraCommands: '',
+  alwaysShowCompilerOutput: false,
+  useStdLib: false
 };
 
 export default defineCodeRunnersSetup((runners: CodeRunnerProviders) => {
