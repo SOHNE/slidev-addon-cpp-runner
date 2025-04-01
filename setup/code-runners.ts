@@ -1,8 +1,10 @@
-import { CodeRunnerOutput, defineCodeRunnersSetup } from '@slidev/types';
+import { CodeRunnerContext, CodeRunnerOutput, CodeRunnerProviders, defineCodeRunnersSetup } from '@slidev/types';
 import { ref } from 'vue';
 import { useNav } from '@slidev/client';
 
-export default defineCodeRunnersSetup(() => {
+import packageJson from "../package.json";
+
+export default defineCodeRunnersSetup((runners: CodeRunnerProviders) => {
   return {};
 });
 
