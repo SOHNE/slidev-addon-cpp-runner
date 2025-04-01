@@ -74,6 +74,90 @@ const OUTPUT_FORMATS = {
   DEFAULT: '&& ./a.out'
 };
 
+// Compiler support definitions
+const COMPILER_SUPPORT: Record<SupportedLanguages, CompilerSupport[]> = {
+  cpp: [
+    {
+      name: 'g++-4.9',
+      standards: ['c++98', 'c++11', 'c++14'],
+      additionalLibs: {
+        'c++11': '-latomic',
+        'c++14': '-latomic',
+      }
+    },
+    {
+      name: 'g++-5.2',
+      standards: ['c++98', 'c++11', 'c++14', 'c++1z'],
+      additionalLibs: {
+        'c++11': '-latomic',
+        'c++14': '-latomic',
+        'c++1z': '-latomic',
+      }
+    },
+    {
+      name: 'g++',
+      standards: ['c++98', 'c++11', 'c++14', 'c++17', 'c++20', 'c++23'],
+      additionalLibs: {
+        'c++11': '-latomic',
+        'c++14': '-latomic',
+        'c++17': '-latomic',
+        'c++20': '-latomic',
+        'c++23': '-latomic',
+      }
+    },
+    {
+      name: 'clang++',
+      standards: ['c++98', 'c++11', 'c++14', 'c++17'],
+      stdlibFlag: '-stdlib=libc++',
+      additionalLibs: {
+        'c++11': '-latomic -lsupc++',
+        'c++14': '-latomic -lsupc++',
+        'c++17': '-latomic -lsupc++',
+      }
+    }
+  ],
+  c: [
+    {
+      name: 'gcc-4.9',
+      standards: ['c89', 'c99', 'c11'],
+      additionalLibs: {
+        'c11': '-latomic',
+      }
+    },
+    {
+      name: 'g++-4.9',
+      standards: ['c89', 'c99', 'c11'],
+      additionalLibs: {
+        'c11': '-latomic',
+      }
+    },
+    {
+      name: 'g++-5.2',
+      standards: ['c89', 'c99', 'c11'],
+      additionalLibs: {
+        'c11': '-latomic',
+      }
+    },
+    {
+      name: 'g++',
+      standards: ['c89', 'c99', 'c11', 'c17', 'c2x'],
+      additionalLibs: {
+        'c11': '-latomic',
+        'c17': '-latomic',
+        'c2x': '-latomic',
+      }
+    },
+    { name: 'clang', standards: ['c89'] },
+    {
+      name: 'clang++',
+      standards: ['c99', 'c11'],
+      additionalLibs: {
+        'c11': '-latomic',
+      }
+    }
+  ]
+};
+
 export default defineCodeRunnersSetup((runners: CodeRunnerProviders) => {
   return {};
 });
