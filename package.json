@@ -1,0 +1,47 @@
+{
+  "name": "slidev-addon-cpp-runner",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "license": "MIT",
+  "keywords": [
+    "slidev-addon",
+    "c",
+    "c++",
+    "coliru"
+  ],
+  "description": "A Slidev addon that allows you to run C + C++ code in your slides.",
+  "config": {
+    "coliru": {
+      "compileUrl": "http://coliru.stacked-crooked.com/compile",
+      "shareUrl": "http://coliru.stacked-crooked.com/share"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SOHNE/slidev-addon-cpp-runner.git"
+  },
+  "author": {
+    "name": "Leandro Peres",
+    "email": "leandro@peres.dev",
+    "url": "https://github.com/zschzen"
+  },
+  "files": [
+    "setup",
+    "README.md",
+    "LICENSE",
+    "vite.config.ts"
+  ],
+  "devDependencies": {
+    "@slidev/cli": "latest",
+    "@slidev/client": "latest",
+    "@slidev/theme-default": "latest",
+    "@slidev/types": "latest",
+    "@types/node": "latest",
+    "vue": "latest"
+  }
+}
