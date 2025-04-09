@@ -2,6 +2,7 @@
 
 [![NPM][npm-badge]][npm-link]
 [![License][license-badge]][license-link]
+[![Deploy][deploy-badge]][deploy-link]
 
 A `C + C++` execution addon for [Slidev]'s Monaco Runner, powered by [Coliru]'s compilation API. Write, compile, and run `C + C++` code directly in your presentations!
 
@@ -192,6 +193,8 @@ The addon includes comprehensive type safety features:
 [npm-link]: https://www.npmjs.com/package/slidev-addon-cpp-runner
 [license-badge]: https://img.shields.io/github/license/SOHNE/slidev-addon-cpp-runner
 [license-link]: https://github.com/SOHNE/slidev-addon-cpp-runner/blob/main/LICENSE
+[deploy-badge]: https://github.com/SOHNE/slidev-addon-cpp-runner/actions/workflows/deploy.yml/badge.svg
+[deploy-link]: https://github.com/SOHNE/slidev-addon-cpp-runner/actions/workflows/deploy.yml
 
 [Slidev]: https://sli.dev
 [Coliru]: https://coliru.stacked-crooked.com
