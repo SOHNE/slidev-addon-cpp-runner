@@ -81,7 +81,7 @@ int main( void )
 
 # C++
 
-```cpp {monaco-run} {banana}
+```cpp {monaco-run}
 #include <iostream>
 
 int main()
