@@ -17,8 +17,8 @@
   "description": "A Slidev addon that allows you to run C + C++ code in your slides.",
   "config": {
     "coliru": {
-      "compileUrl": "http://coliru.stacked-crooked.com/compile",
-      "shareUrl": "http://coliru.stacked-crooked.com/share"
+      "compileUrl": "https://coliru.stacked-crooked.com/compile",
+      "shareUrl": "https://coliru.stacked-crooked.com/share"
     }
   },
   "repository": {
