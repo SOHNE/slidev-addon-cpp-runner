@@ -1,10 +1,14 @@
-# slidev-addon-cpp-runner 
+### `slidev-addon-cpp-runner`
 
-[![npm package](https://img.shields.io/npm/v/slidev-addon-cpp-runner)](https://www.npmjs.com/package/slidev-addon-cpp-runner)
+[![NPM][npm-badge]][npm-link]
+[![License][license-badge]][license-link]
 
 A `C + C++` execution addon for [Slidev]'s Monaco Runner, powered by [Coliru]'s compilation API. Write, compile, and run `C + C++` code directly in your presentations!
 
-![Screenshot](https://github.com/user-attachments/assets/b7607393-8200-4e1f-a9fa-03242708e987)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./.github/assets/screenshot-dark.png">
+  <img alt="CameBoy Logo" src="./.github/assets/screenshot-light.png" width="100%">
+</picture>
 
 ## 🌟 Features
 
@@ -33,31 +37,22 @@ addons:
 
 ## 🛠️ Usage
 
-### C++ Example
-```cpp {monaco-run}
-#include <iostream>
-#include <vector>
-
-int main() {
-	std::vector<int> numbers = {1, 2, 3, 4, 5};
-	for ( const auto& num : numbers ) {
-		std::cout << "Number: " << num << std::endl;
-	}
-	return 0;
-}
-```
-
 ### C Example
 
-```c {monaco-run}
-#include <stdio.h>
+```yaml
+# C
 
-int main( void ) {
-	for ( int i = 0; i < 5; ++i ) {
-		printf( "Counter: %d\n", i );
-	}
-	return 0;
-}
+```c {monaco-run}
+/** C2x CODE */
+```
+
+### C++ Example
+
+```yaml
+# C++
+
+```cpp {monaco-run}
+/** C++20 CODE */
 ```
 
 ## ⚙️ Configuration
@@ -192,6 +187,13 @@ The addon includes comprehensive type safety features:
 **Happy Coding in Your Slides!** 🎉
 
 [//]: (Externals)
+
+[npm-badge]: https://img.shields.io/npm/v/slidev-addon-cpp-runner
+[npm-link]: https://www.npmjs.com/package/slidev-addon-cpp-runner
+[license-badge]: https://img.shields.io/github/license/SOHNE/slidev-addon-cpp-runner
+[license-link]: https://github.com/SOHNE/slidev-addon-cpp-runner/blob/main/LICENSE
+
 [Slidev]: https://sli.dev
 [Coliru]: https://coliru.stacked-crooked.com
+
 [//]: (EOF)
