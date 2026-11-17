@@ -4,7 +4,7 @@
 [![License][license-badge]][license-link]
 [![Deploy][deploy-badge]][deploy-link]
 
-A `C + C++` execution addon for [Slidev]'s Monaco Runner, powered by [Coliru]'s compilation API. Write, compile, and run `C + C++` code directly in your presentations!
+A `C + C++` execution addon for [Slidev]'s Monaco Runner, powered by [Godbolt]'s compilation API ( default ) and [Coliru]. Write, compile, and run `C + C++` code directly in your presentations!
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./.github/assets/screenshot-dark.png">
@@ -15,6 +15,7 @@ A `C + C++` execution addon for [Slidev]'s Monaco Runner, powered by [Coliru]'s 
 
 - 🖥️ In-slide C/C++ code execution
 - ⚙️ Customizable compiler configurations
+- 🔀 Pluggable backends: [Godbolt] ( default ) and [Coliru]
 - 🔄 Real-time output display
 - 📚 Support for multiple language standards
 - 🎚️ Per-slide configuration overrides
@@ -58,6 +59,33 @@ addons:
 
 ## ⚙️ Configuration
 
+### Backend
+
+| Backend   | Description                                                                 |
+|-----------|-----------------------------------------------------------------------------|
+| `godbolt` | **Default.** Runs code through [Godbolt] ( Compiler Explorer )'s executor API |
+| `coliru`  | Runs code through [Coliru]'s shell-based compilation API                      |
+
+The backend is selected with the `backend` option, either at the slide level or inside the `c`/`cpp` blocks:
+
+```yaml
+---
+backend: 'godbolt'
+
+cpp:
+  backend: 'coliru'
+---
+```
+
+On Godbolt, the logical compiler ( `g++`, `clang++`, ... ) is resolved to the newest stable matching compiler ( e.g. `g162` ). Pass an explicit `compilerId` to pin one:
+
+```yaml
+---
+cpp:
+  compilerId: 'g132'
+---
+```
+
 ### Global Configuration
 ```yaml
 ---
@@ -66,8 +94,14 @@ addons:
 
 # C configuration using default settings
 c:
+  # Execution backend ( 'godbolt' or 'coliru' ).
+  backend: 'godbolt'
+
   # Compiler to use.
   compiler: 'gcc'
+
+  # Compiler id on the backend ( e.g. 'g162' on Godbolt ), to skip auto resolution.
+  # compilerId: 'g162'
 
   # C standard.
   standard: 'c2x'
@@ -81,7 +115,7 @@ c:
   # Libraries to link.
   libraries: '-lm -latomic'
 
-  # Additional shell commands to run after compilation.
+  # Additional shell commands to run after compilation ( Coliru only ).
   extraCommands: ''
 
   # Whether to always show the compiler output.
@@ -89,8 +123,14 @@ c:
 
 # C++ configuration using default settings
 cpp:
+  # Execution backend ( 'godbolt' or 'coliru' ).
+  backend: 'godbolt'
+
   # Compiler to use.
   compiler: 'g++'
+
+  # Compiler id on the backend ( e.g. 'g162' on Godbolt ), to skip auto resolution.
+  # compilerId: 'g162'
 
   # C++ standard.
   standard: 'c++20'
@@ -104,7 +144,7 @@ cpp:
   # Libraries to link.
   libraries: '-lm -latomic'
 
-  # Additional shell commands to run after compilation.
+  # Additional shell commands to run after compilation ( Coliru only ).
   extraCommands: ''
 
   # Whether to always show the compiler output.
@@ -156,11 +196,16 @@ optimization: 'O3'
 
 ## 📝 Output Formatting
 
-- When `alwaysShowCompilerOutput` is `true`:
-	- **Compiler Output**: `☘ [Compiler message]`
-	- **Program Output**: `☢ [Program output]`
-- When `alwaysShowCompilerOutput` is `false`:
-	- Only program output is shown (unless there's a compiler error)
+- On **Godbolt** ( default ):
+	- Compiler errors are shown first ( from the build result ).
+	- Then compiler messages and program output.
+	- Exit code is appended when the program fails: `Program returned: <code>`.
+- On **Coliru**:
+	- When `alwaysShowCompilerOutput` is `true`:
+		- **Compiler Output**: `☘ [Compiler message]`
+		- **Program Output**: `☢ [Program output]`
+	- When `alwaysShowCompilerOutput` is `false`:
+		- Only program output is shown (unless there's a compiler error)
 
 ## 🛡️ Type Safety
 
@@ -173,7 +218,7 @@ The addon includes comprehensive type safety features:
 
 ## 🔧 How It Works
 
-1. 📩 Code sent to [Coliru] API.
+1. 📩 Code sent to the backend's API ( [Godbolt] by default, or [Coliru] ).
 2. 🛠️ Compiled with specified options.
 3. 🏃 Executed in secure environment.
 4. 📤 Results returned to your slide.
@@ -181,7 +226,8 @@ The addon includes comprehensive type safety features:
 ## ⚠️ Limitations
 
 - 🌐 Requires internet connection.
-- 🛡️ Subject to [Coliru]'s services and security restrictions.
+- 🛡️ Subject to [Godbolt]'s and [Coliru]'s services and security restrictions.
+- 🐚 `extraCommands` require a shell, so they only run on [Coliru].
 
 ---
 
@@ -197,6 +243,7 @@ The addon includes comprehensive type safety features:
 [deploy-link]: https://github.com/SOHNE/slidev-addon-cpp-runner/actions/workflows/deploy.yml
 
 [Slidev]: https://sli.dev
+[Godbolt]: https://godbolt.org
 [Coliru]: https://coliru.stacked-crooked.com
 
 [//]: (EOF)

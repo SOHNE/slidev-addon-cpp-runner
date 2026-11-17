@@ -5,6 +5,9 @@ class: p-2
 
 # C configuration using default settings
 c:
+  # Execution backend ( 'godbolt' or 'coliru' ).
+  backend: 'godbolt'
+
   # Compiler to use.
   compiler: 'gcc'
 
@@ -28,6 +31,9 @@ c:
 
 # C++ configuration using default settings
 cpp:
+  # Execution backend ( 'godbolt' or 'coliru' ).
+  backend: 'godbolt'
+
   # Compiler to use.
   compiler: 'g++'
 
@@ -53,7 +59,7 @@ cpp:
 
 # C + C++ Runner for [Slidev]
 
-Powered by [Coliru]
+Powered by [Godbolt] · [Coliru]
 
 ::left::
 
@@ -101,5 +107,6 @@ int main()
 
 [//]: (Externals)
 [Slidev]: https://sli.dev
+[Godbolt]: https://godbolt.org
 [Coliru]: https://coliru.stacked-crooked.com
 [//]: (EOF)

@@ -1,6 +1,6 @@
 {
   "name": "slidev-addon-cpp-runner",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "build": "slidev build",
@@ -12,10 +12,14 @@
     "slidev-addon",
     "c",
     "c++",
+    "godbolt",
     "coliru"
   ],
-  "description": "A Slidev addon that allows you to run C + C++ code in your slides.",
+  "description": "A Slidev addon that allows you to run C + C++ code in your slides, powered by Godbolt and Coliru.",
   "config": {
+    "godbolt": {
+      "url": "https://godbolt.org/api"
+    },
     "coliru": {
       "compileUrl": "https://coliru.stacked-crooked.com/compile",
       "shareUrl": "https://coliru.stacked-crooked.com/share"
